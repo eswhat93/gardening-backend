@@ -1,0 +1,15 @@
+server:
+    port:20000
+
+profiles:
+  active: local
+
+--
+spring:
+  profiles: local
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mysql?useSSL=false
+    username: root
+    password: 1234
