@@ -20,6 +20,13 @@ spring:
   output:
     ansi:
       enabled: always
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+    thymeleaf:
+      cache: false
 logging:
   level:
     org.hibernate.type: trace

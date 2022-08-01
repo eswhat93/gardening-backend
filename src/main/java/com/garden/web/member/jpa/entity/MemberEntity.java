@@ -1,27 +1,40 @@
 package com.garden.web.member.jpa.entity;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import javafx.scene.NodeBuilder;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Getter
-@Setter
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name="member")
 public class MemberEntity {
 
+  @Builder
+  public MemberEntity(String oid,String userId, String userName, String password, String status){
+    this.oid = oid;
+    this.userId = userId;
+    this.userName = userName;
+    this.password = password;
+    this.status = status;
+  }
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name="id", length = 255, nullable = false)
+  @Column(name="oid", length = 255, nullable = false)
   @Size(min=4, max=255)
-  private Long id;
+  private String oid;
 
-  @Column(name="name", length = 255, nullable = false)
+  @Column(name="userId", length = 255, nullable = false)
   @Size(min=2, max=255)
-  private String name;
+  private String userId;
+
+  @Column(name="userName", length = 255, nullable = false)
+  @Size(min=2, max=255)
+  private String userName;
 
   @Column(name="status", length = 10)
   @Size(min=1, max=10)
@@ -34,10 +47,11 @@ public class MemberEntity {
   @Column(name="email", length = 255)
   private String email;
 
-  @Column(name="birthdate", length = 255, nullable = false)
+  @Column(name="birthdate", length = 255)
   private String birthdate;
 
-  @Column(name="fail_count", length = 10, nullable = false)
+  @Column(name="fail_count", length = 10)
+  @ColumnDefault("0")
   private String fail_count;
 
 }
